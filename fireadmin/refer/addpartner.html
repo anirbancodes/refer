@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Partner</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <style>
+      body {
+        /* margin-top: 80px; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+      button {
+        width: 120px;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+      input {
+        width: 40vw !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    Code
+    <input class="w-input" id="code" type="number" />
+    <br />
+
+    Name <input class="w-input" id="name" type="text" /> <br />
+    Email <input class="w-input" id="email" type="email" /> <br />
+
+    Birth <input class="w-input" id="birth" type="number" /> <br />
+
+    Bank Acc <input class="w-input" id="bankacc" type="number" /> <br />
+    IFSC <input class="w-input" id="ifsc" type="text" /> <br />
+    UPI ID <input class="w-input" id="upi" type="text" /> <br />
+    <br /><br /><br />
+
+    <div
+      style="
+        width: 80vw;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 20vh;
+      "
+    >
+      <button class="button" id="addBtn">Add</button>
+      <button class="button" id="updateBtn">Update</button>
+      <button class="button" id="deleteBtn">Delete</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+    <script id="main">
+      const firebaseConfig = {
+        apiKey: "AIzaSyA93jfnENX79gIhn7nm9rbTRrR_pQh1S1g",
+        authDomain: "qc-refer.firebaseapp.com",
+        projectId: "qc-refer",
+        storageBucket: "qc-refer.appspot.com",
+        messagingSenderId: "19488055777",
+        appId: "1:19488055777:web:3a7c1c97e8ba42e4b8b2a0",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      const cloudDB = firebase.firestore();
+
+      const code = document.getElementById("code");
+      const name = document.getElementById("name");
+      const birth = document.getElementById("birth");
+      const email = document.getElementById("email");
+      const bankacc = document.getElementById("bankacc");
+      const ifsc = document.getElementById("ifsc");
+      const upi = document.getElementById("upi");
+      const addBtn = document.getElementById("addBtn");
+      const updateBtn = document.getElementById("updateBtn");
+      const deleteBtn = document.getElementById("deleteBtn");
+
+      const database = cloudDB.collection("partners");
+
+      addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        database
+          .doc(code.value)
+          .set({
+            name: name.value,
+            code: code.value,
+            bankacc: bankacc.value,
+            ifsc: ifsc.value,
+            upi: upi.value,
+            email: email.value,
+            birth: birth.value,
+          })
+          .then(() => {
+            console.log("Data suceess");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+
+      updateBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        //if()
+        database.doc(code.value).update({
+          name: name.value,
+          code: code.value,
+          bankacc: bankacc.value,
+          ifsc: ifsc.value,
+          upi: upi.value,
+          email: email.value,
+          birth: birth.value,
+        });
+      });
+
+      deleteBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        let text;
+        let password = prompt("enter admin password:");
+        if (password != "ml099845") {
+          alert("Wrong password");
+        } else {
+          //
+
+          //delete a field
+          //database.doc(name.value).update({
+          //sector: firebase.firestore.FieldValue.delete()
+
+          //delete a document
+          database.doc(code.value).delete();
+        }
+      });
+      // });
+    </script>
+  </body>
+</html>

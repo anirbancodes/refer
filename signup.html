@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup - Refer</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body
+    style="
+      margin: 0px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <h1>Signup</h1>
+    <div>
+      <form
+        data-name="Signup"
+        class="footer-newsletter"
+        name="signup"
+        method="GET"
+        action="signupdone.html"
+        netlify
+      >
+        <p>
+          Your Name
+          <!-- <span style="font-size: smaller">(same as your referral code)</span> -->
+        </p>
+        <input
+          type="text"
+          class="w-input"
+          style="border-width: 2px; border-radius: 6px; border-color: deeppink"
+          id="name"
+          name="name"
+          placeholder=""
+          required
+        />
+        <p>Email</p>
+        <input
+          type="email"
+          class="w-input"
+          id="email"
+          name="email"
+          style="border-width: 2px; border-radius: 6px; border-color: deeppink"
+          placeholder="your@mail.com"
+          required
+        />
+        <p>Mobile number</p>
+        <input
+          type="number"
+          class="w-input"
+          id="number"
+          name="number"
+          style="border-width: 2px; border-radius: 6px; border-color: deeppink"
+          placeholder=""
+          required
+        />
+        <p>Year of Birth</p>
+        <input
+          type="number"
+          class="w-input"
+          id="year"
+          name="year"
+          style="border-width: 2px; border-radius: 6px; border-color: deeppink"
+          placeholder="example: 1990"
+          required
+        />
+
+        <div class="top-margin _20-pixels">
+          <input type="submit" class="button-outline-blue w-button" />
+        </div>
+      </form>
+    </div>
+    <!-- <div class="top-margin _20-pixels">
+      <a
+        id="loginBtn"
+        class="button-outline-blue"
+        style="padding-left: 30px; padding-right: 30px; font-size: large"
+        >Login</a
+      >
+    </div> -->
+
+    <h1 style="margin-top: 15px; padding-left: 100px; padding-right: 100px">
+      Already have an account ?
+    </h1>
+    <div class="margin-top:20px">
+      <a
+        href="login.html"
+        class="button-outline-blue"
+        style="font-size: 16px; padding-left: 30px; padding-right: 30px"
+        >Login</a
+      >
+    </div>
+  </body>
+</html>

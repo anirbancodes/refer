@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Page</title>
+    <link href="../css/first.css" rel="stylesheet" type="text/css" />
+    <link href="../css/second.css" rel="stylesheet" type="text/css" />
+  </head>
+  <style>
+    .item-2 {
+      border-radius: 15px;
+      background-color: white;
+      color: black;
+    }
+    .item-1 {
+      background-color: #002736;
+      padding: 40px 0px;
+      border-radius: 25px;
+    }
+    h3 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 16px;
+      color: gray;
+    }
+    /* .brokerageBtn {
+      padding: 8px;
+      border: 1px solid;
+      border-radius: 30px;
+    } */
+
+    @media only screen and (min-width: 600px) {
+      .item-1 {
+        padding-left: 2.2%;
+        padding-right: 2.2%;
+        margin-left: -2.2%;
+        margin-right: -2.2%;
+      }
+      .item-2 {
+        margin-left: 8px;
+        margin-bottom: 3%;
+        width: 300px;
+        height: 280px;
+      }
+      .copyLinkBtn {
+        margin-top: 30px;
+      }
+      .product-name {
+        margin-top: -15px;
+      }
+      .product-amt {
+        margin-top: 5px;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .item-1 {
+        padding: 0;
+        margin-left: -2.2%;
+        margin-right: -2.2%;
+        padding-bottom: 20px;
+      }
+      .item-2 {
+        width: 47%;
+        height: 250px;
+        padding-left: 10px;
+        padding-right: 6px;
+      }
+      .copyLinkBtn {
+        margin-top: 20px;
+      }
+      .product-name {
+        margin-top: -5px;
+      }
+      .product-amt {
+        margin-top: 0px;
+      }
+
+      h3 {
+        font-size: 16px;
+      }
+    }
+  </style>
+  <body>
+    <div class="main-body">
+      <div class="downarrowpage">
+        <img style="width: 30px" src="../png/downArrow.png" />
+      </div>
+      <div class="hero">
+        <h1 style="font-size: 40px">Earn money by referring demat account</h1>
+      </div>
+
+      <p>Acc Open: Client has to pay this amount for demat account opening</p>
+      <p>Min 1st trade: Client has to do a minimum trade of that value</p>
+      <p>AMC: Annual Maintenance Charge for demat account</p>
+
+      <div class="item-1" id="item-1">
+        <!--  <div class="item-2">
+          <h2 class="product-name">Upstox</h2>
+          <div>
+            <h3 class="product-amt">
+              ₹<span id="upstox-amt">0</span> per refer
+            </h3>
+            <p>
+              Opening: ₹<span id="upstox-open">0</span> &nbsp; AMC: ₹<span
+                id="upstox-amc"
+                >0</span
+              ><br />1st trade: ₹ <span id="upstox-1stTrade">0</span> min.
+            </p>
+            <a href="" class="brokerageBtn"
+              ><u>Brokerage</u>&nbsp;<img
+                style="width: 15px"
+                src="../png/linkArrow.png"
+            /></a>
+          </div>
+          <div class="copyLinkBtn">
+            <a onclick="copyupstox()" class="button-outline-blue"
+              >Copy Link&nbsp;
+              <img
+                style="width: 15px; filter: invert(1)"
+                src="../png/share2.png"
+            /></a>
+          </div>
+        </div>
+
+        <div class="item-2">
+          <h2 class="product-name">Jiffy(Choice)</h2>
+          <div>
+            <h3 class="product-amt">
+              ₹<span id="jiffy-amt">0</span> per refer
+            </h3>
+            <p>
+              Opening: ₹<span id="jiffy-open">0</span> &nbsp; AMC: ₹<span
+                id="jiffy-amc"
+                >0</span
+              ><br />1st trade: ₹ <span id="jiffy-1stTrade">0</span> min.
+            </p>
+            <a href="" class="brokerageBtn"
+              ><u>Brokerage</u>&nbsp;<img
+                style="width: 15px"
+                src="../png/linkArrow.png"
+            /></a>
+          </div>
+          <div class="copyLinkBtn">
+            <a onclick="copyjiffy()" class="button-outline-blue"
+              >Copy Link&nbsp;
+              <img
+                style="width: 15px; filter: invert(1)"
+                src="../png/share2.png"
+            /></a>
+          </div>
+        </div>
+        <div class="item-2">
+          <h2 class="product-name">Alice Blue</h2>
+          <div>
+            <h3 class="product-amt">
+              ₹<span id="aliceblue-amt">0</span> per refer
+            </h3>
+            <p>
+              Opening: ₹<span id="aliceblue-open">0</span> &nbsp; AMC: ₹<span
+                id="aliceblue-amc"
+                >0</span
+              ><br />1st trade: ₹ <span id="aliceblue-1stTrade">0</span> min.
+            </p>
+            <a href="" class="brokerageBtn"
+              ><u>Brokerage</u>&nbsp;<img
+                style="width: 15px"
+                src="../png/linkArrow.png"
+            /></a>
+          </div>
+          <div class="copyLinkBtn">
+            <a onclick="copyaliceblue()" class="button-outline-blue"
+              >Copy Link&nbsp;
+              <img
+                style="width: 15px; filter: invert(1)"
+                src="../png/share2.png"
+            /></a>
+          </div>
+        </div>
+
+        
+      </div> -->
+      </div>
+    </div>
+
+    <!-- <script>
+      let upstoxAmt = document.getElementById("upstox-amt");
+      let upstoxOpen = document.getElementById("upstox-open");
+      let upstoxAmc = document.getElementById("upstox-amc");
+      let upstox1stTrade = document.getElementById("upstox-1stTrade");
+      let jiffyAmt = document.getElementById("jiffy-amt");
+      let jiffyOpen = document.getElementById("jiffy-open");
+      let jiffyAmc = document.getElementById("jiffy-amc");
+      let jiffy1stTrade = document.getElementById("jiffy-1stTrade");
+      let aliceblueAmt = document.getElementById("aliceblue-amt");
+      let aliceblueOpen = document.getElementById("aliceblue-open");
+      let aliceblueAmc = document.getElementById("aliceblue-amc");
+      let aliceblue1stTrade = document.getElementById("aliceblue-1stTrade");
+      let paytmmoneyAmt = document.getElementById("paytmmoney-amt");
+      let paytmmoneyOpen = document.getElementById("paytmmoney-open");
+      let paytmmoneyAmc = document.getElementById("paytmmoney-amc");
+      let paytmmoney1stTrade = document.getElementById("paytmmoney-1stTrade");
+    </script> -->
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+    <script id="main">
+      const firebaseConfig = {
+        apiKey: "AIzaSyA93jfnENX79gIhn7nm9rbTRrR_pQh1S1g",
+        authDomain: "qc-refer.firebaseapp.com",
+        projectId: "qc-refer",
+        storageBucket: "qc-refer.appspot.com",
+        messagingSenderId: "19488055777",
+        appId: "1:19488055777:web:3a7c1c97e8ba42e4b8b2a0",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      const cloudDB = firebase.firestore();
+
+      // const name = document.getElementById("name");
+      // const amt = document.getElementById("amt");
+      // const trade = document.getElementById("trade");
+      // const amc = document.getElementById("amc");
+      // const open = document.getElementById("open");
+
+      const database = cloudDB.collection("products");
+      database
+        .doc("refer")
+        .get()
+        .then((doc) => {
+          const demat = doc.data().demat;
+          const names = doc.data().brokers;
+
+          names.forEach((name) => {
+            document.getElementById("item-1").innerHTML +=
+              `<div class="item-2">
+                    <h2 class="product-name">` +
+              name +
+              `</h2>
+                  <div>
+                    <h3 class="product-amt">
+                      ₹<span id="` +
+              name +
+              `-amt">` +
+              demat[name].amt +
+              `</span> per refer
+                    </h3>
+                    <p>
+                      Opening: ₹<span id="` +
+              name +
+              `-open">` +
+              demat[name].open +
+              `</span> &nbsp; AMC: ₹<span
+                        id="` +
+              name +
+              `-amc"
+                        >` +
+              demat[name].amc +
+              `</span
+                      ><br />1st trade: ₹ <span id="` +
+              name +
+              `-1stTrade">` +
+              demat[name].trade +
+              `</span> min.
+                    </p>
+                    <a href="" class="brokerageBtn"
+                      ><u>Brokerage</u>&nbsp;<img
+                        style="width: 15px"
+                        src="../png/linkArrow.png"
+                    /></a>
+                  </div>
+                  <div class="copyLinkBtn">
+                    <a onclick="copy` +
+              name +
+              `()" class="button-outline-blue"
+                      >Copy Link&nbsp;
+                      <img
+                        style="width: 15px; filter: invert(1)"
+                        src="../png/share2.png"
+                    /></a>
+                  </div>
+                </div>`;
+          });
+        });
+    </script>
+    <script>
+      function copyupstox() {
+        copyurl("refer.quantcap.tech/lead/upstox     Enter my referral code: ");
+      }
+      function copyjiffy() {
+        copyurl("refer.quantcap.tech/lead/jiffy     Enter my referral code: ");
+      }
+      function copypaytmmoney() {
+        copyurl(
+          "refer.quantcap.tech/lead/paytmmoney     Enter my referral code: "
+        );
+      }
+      function copyaliceblue() {
+        copyurl(
+          "refer.quantcap.tech/lead/aliceblue     Enter my referral code: "
+        );
+      }
+      function copyurl(link) {
+        var inputc = document.body.appendChild(document.createElement("input"));
+        inputc.value = link;
+        inputc.focus();
+        inputc.select();
+        document.execCommand("copy");
+        inputc.parentNode.removeChild(inputc);
+        alert("URL Copied.");
+      }
+    </script>
+  </body>
+</html>

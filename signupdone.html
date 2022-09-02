@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup-Refer</title>
+    <link href="css/first.css" rel="stylesheet" type="text/css" />
+  </head>
+  <style>
+    body {
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <h1 id="name">Thanks,</h1>
+
+    <h2 id="email">You will recieve a mail on</h2>
+    <div class="top-margin _20-pixels">
+      <a href="/" class="button-outline-blue w-button">Continue..</a>
+    </div>
+    <script>
+      const params = new URL(document.location).searchParams;
+      const name = params.get("name");
+      document.getElementById("name").innerHTML +=
+        " " + name.split(" ")[0] + ".";
+      const email = params.get("email");
+      document.getElementById("email").innerHTML += " " + email + " soon..";
+    </script>
+  </body>
+</html>

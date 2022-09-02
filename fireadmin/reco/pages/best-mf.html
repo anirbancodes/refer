@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>best-MF</title>
+    <style>
+      body {
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+
+  <body>
+    Name <input id="name" type="text" /> <br /><br />
+    Cap
+    <select id="cap">
+      <option value="Large Cap">large</option>
+      <option value="Mid Cap">mid</option>
+      <option value="Small Cap">small</option>
+      <option value="Other Top Funds">other</option>
+    </select>
+    <br /><br /><br />
+    <div class="button">
+      <button id="addBtn">Add</button>
+      &emsp;&emsp;&emsp;&emsp;
+      <button id="deleteBtn">Delete</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+    <script id="main">
+      const firebaseConfig = {
+        apiKey: "AIzaSyCcMdk4Gm4XrQi2Zqll9mxMU2DYXljFer8",
+        authDomain: "qc-reco.firebaseapp.com",
+        projectId: "qc-reco",
+        storageBucket: "qc-reco.appspot.com",
+        messagingSenderId: "496853949939",
+        appId: "1:496853949939:web:426fb4720bc0347f308686",
+        measurementId: "G-GQE78RBPEK",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      const cloudDB = firebase.firestore();
+
+      const name = document.getElementById("name");
+      const addBtn = document.getElementById("addBtn");
+      const deleteBtn = document.getElementById("deleteBtn");
+
+      const database = cloudDB.collection("best-mutual-funds");
+
+      addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        database
+          .doc(cap.value)
+          .set({
+            name: name.value,
+            cap: cap.value,
+          })
+          .then(() => {
+            console.log("Data suceess");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+
+      deleteBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        //delete a document
+        database.doc(name.value).delete();
+      });
+    </script>
+  </body>
+</html>

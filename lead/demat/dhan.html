@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dhan | Refer</title>
+    <link href="../../css/first.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body
+    style="
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <h1>Dhan</h1>
+    <div>
+      <form
+        data-name="Dhan Lead"
+        class="footer-newsletter"
+        method="post"
+        name="dhanLead"
+        action="../../submit/demat/dhan"
+        netlify
+      >
+        <p>Full Name*</p>
+        <input
+          type="text"
+          class="w-input"
+          style="border-width: 2px; border-radius: 6px; border-color: deeppink"
+          name="Name"
+          data-name="Name"
+          placeholder="Full Name"
+          required=""
+        />
+        <p>Mobile number*</p>
+        <input
+          type="number"
+          class="w-input"
+          style="border-width: 2px; border-radius: 6px; border-color: deeppink"
+          name="Number"
+          data-name="Number"
+          placeholder="Mobile Number"
+          required=""
+        />
+        <p>Referral Code</p>
+        <input
+          type="text"
+          class="w-input"
+          style="border-width: 2px; border-radius: 6px; border-color: deeppink"
+          name="Ref Code"
+          data-name="Ref Code"
+          placeholder=""
+        />
+        <!-- <input
+          type="submit"
+          class="w-input"
+          style="border-width: 2px; border-radius: 6px; border-color: deeppink"
+          name="Email"
+          data-name="Email"
+          placeholder="your@email.com"
+          required=""
+        /> -->
+        <div class="top-margin _20-pixels">
+          <input type="submit" class="button-outline-blue w-button" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

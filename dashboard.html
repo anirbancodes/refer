@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashoard - Refer</title>
+    <link href="css/second.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+    <script src="js/dashboard.js"></script>
+
+    <style>
+      * {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Refer-Dashboard</h3>
+    <p>
+      <span id="name"></span>Code:<span id="code"></span> Birth:<span
+        id="year"
+      ></span>
+    </p>
+    <div style="margin-left: 90%; margin-top: -38px; margin-bottom: 30px">
+      <a href="/" class="button-outline-blue">Logout</a>
+    </div>
+    <div style="margin-left: 10px; margin-bottom: 30px">
+      <a href="/" class="button-outline-blue">Go to Home</a>
+    </div>
+    <table id="table">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Number</th>
+        <th>Product</th>
+        <th>Status</th>
+        <th>Eligible</th>
+        <th>Payout Status</th>
+      </tr>
+    </table>
+    <p style="margin-top: 60px; font-size: 16px">
+      Check the
+      <a style="text-decoration: none; color: black" href="/"><u>Homepage</u></a
+      >regularly for any change in the referral amount.
+    </p>
+    <p style="font-size: 14px">
+      Never share your birth year or the url of the current page to anyone. Do
+      not take screenshots or share any data from this page to anyone. Your
+      account & identity will be blocked forever from Refer or any of our sites
+      if any misuse or harm is caused from your side.
+    </p>
+  </body>
+</html>

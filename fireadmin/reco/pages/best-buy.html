@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>best-buy-levels</title>
+    <style>
+      body {
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+
+  <body>
+    Name <input id="name" type="text" /> <br /><br />
+
+    Low <input id="low" type="text" /> <br /><br />
+
+    High <input id="high" type="text" /> <br /><br />
+
+    Sector
+    <select id="sector" name="cars">
+      <option value="Automobile">Automobile</option>
+      <option value="Cement">Cement</option>
+      <option value="Chemicals">Chemicals</option>
+      <option value="Construction">Construction</option>
+      <option value="Consumer Goods">Consumer Goods</option>
+      <option value="Financial Services">Financial Services</option>
+      <option value="Healthcare">Healthcare</option>
+      <option value="IT">IT</option>
+      <option value="Metals">Metals</option>
+      <option value="Oil & Gas">Oil & Gas</option>
+      <option value="Paper">Paper</option>
+      <option value="Pharma">Pharma</option>
+      <option value="Power">Power</option>
+      <option value="Telecom">Telecom</option>
+      <option value="Miscellaneous">Miscellaneous</option>
+    </select>
+    <br /><br />
+
+    <div class="button">
+      <button id="addBtn">Add</button>
+      &emsp;&emsp;&emsp;&emsp;
+      <button id="deleteBtn">Delete</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+    <script id="main">
+      const firebaseConfig = {
+        apiKey: "AIzaSyCcMdk4Gm4XrQi2Zqll9mxMU2DYXljFer8",
+        authDomain: "qc-reco.firebaseapp.com",
+        projectId: "qc-reco",
+        storageBucket: "qc-reco.appspot.com",
+        messagingSenderId: "496853949939",
+        appId: "1:496853949939:web:426fb4720bc0347f308686",
+        measurementId: "G-GQE78RBPEK",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      const cloudDB = firebase.firestore();
+
+      const name = document.getElementById("name");
+      const low = document.getElementById("low");
+      const high = document.getElementById("high");
+      const sector = document.getElementById("sector");
+      const addBtn = document.getElementById("addBtn");
+      // const updateBtn = document.getElementById("updateBtn");
+      const deleteBtn = document.getElementById("deleteBtn");
+
+      const database = cloudDB.collection("best-buy-levels");
+
+      addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        database
+          .doc(name.value)
+          .set({
+            name: name.value,
+            low: low.value,
+            high: high.value,
+            sector: sector.value,
+          })
+          .then(() => {
+            console.log("Data suceess");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+
+      // updateBtn.addEventListener("click", (e) => {
+      //   e.preventDefault();
+      //   database.doc(name.value).update({
+      //     why: 80,
+      //   });
+      // });
+
+      deleteBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        //delete a field
+        //database.doc(name.value).update({
+        //sector: firebase.firestore.FieldValue.delete()
+
+        //delete a document
+        database.doc(name.value).delete();
+      });
+      // });
+    </script>
+  </body>
+</html>

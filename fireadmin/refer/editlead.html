@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Lead</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <style>
+      .code {
+        padding-left: 30%;
+        padding-right: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      .details {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="details">
+      <h3 id="name">Refer-Dashboard</h3>
+      <p>
+        <span>Anirban</span><span>Code: 1006</span> <span>Birth: 2001</span>
+      </p>
+      <div style="margin-left: 90%; margin-top: -38px; margin-bottom: 30px">
+        <a href="/" class="button-outline-blue">Logout</a>
+      </div>
+    </div>
+    <div class="code">
+      <!-- <form data-name="Add Lead" class="footer-newsletter" name="addLead "> -->
+      Ref Code <input class="w-input" name="code" id="code" type="number" />
+
+      <!-- Status
+      <select class="w-input" id="status" name="status">
+        <option value="Acc Not Opened">Acc Not Opened</option>
+        <option value="Not Traded">Not Traded</option>
+        <option value="Funds not added">Funds not added</option>
+      </select>
+
+      Eligible
+      <select class="w-input" id="eligible" name="eligible">
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+      </select>
+
+      Payout Status
+      <select class="w-input" id="payout" name="payout">
+        <option value="Pending">Pending</option>
+        <option value="Done">Done</option>
+      </select> -->
+      <!-- <input class="button-android-dark" type="submit" /> -->
+      <!-- </form> -->
+
+      <div>
+        <button class="button-outline-blue w-button" id="showBtn">Show</button>
+        <button class="button-outline-blue w-button" id="updateBtn">
+          Update
+        </button>
+        &emsp;&emsp;&emsp;&emsp;
+        <!-- <button class="button-outline-blue w-button" id="updateBtn">
+        Update
+      </button>
+      <br /><br />
+      <button class="button-outline-blue w-button" id="deleteBtn">
+        Delete
+      </button> -->
+      </div>
+      <br /><br />
+    </div>
+    <table id="table">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Number</th>
+        <th>Product</th>
+        <th>Status</th>
+        <th>Eligible</th>
+        <th>Payout Status</th>
+      </tr>
+    </table>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+    <script id="main">
+      const firebaseConfig = {
+        apiKey: "AIzaSyA93jfnENX79gIhn7nm9rbTRrR_pQh1S1g",
+        authDomain: "qc-refer.firebaseapp.com",
+        projectId: "qc-refer",
+        storageBucket: "qc-refer.appspot.com",
+        messagingSenderId: "19488055777",
+        appId: "1:19488055777:web:3a7c1c97e8ba42e4b8b2a0",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      const cloudDB = firebase.firestore();
+
+      const code = document.getElementById("code");
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const number = document.getElementById("number");
+      const product = document.getElementById("product");
+      const status = document.getElementById("status");
+      const eligible = document.getElementById("eligible");
+      const payout = document.getElementById("payout");
+
+      const addBtn = document.getElementById("addBtn");
+      const updateBtn = document.getElementById("updateBtn");
+      const deleteBtn = document.getElementById("deleteBtn");
+
+      const database = cloudDB.collection("partners");
+
+      showBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // document.getElementById("table").innerHTML = "";
+        database
+          .doc(code.value)
+          .get()
+          .then((doc) => {
+            const clients = doc.data().clients;
+            clients.forEach((client) => {
+              const product = client.product;
+              const name = client.name;
+              const email = client.email;
+              const number = client.number;
+              const status = client.status;
+              const eligible = client.eligible;
+              const payout = client.payout;
+              //   console.log(
+              //     name,
+              //     email,
+              //     number,
+              //     status,
+              //     product,
+              //     eligible,
+              //     payout
+              //   );
+
+              document.getElementById("table").innerHTML +=
+                "<tr><td>" +
+                name +
+                "</td><td>" +
+                email +
+                "</td><td>" +
+                number +
+                "</td><td>" +
+                product +
+                "</td><td>" +
+                status +
+                "</td><td>" +
+                eligible +
+                "</td><td>" +
+                payout +
+                "</td></tr>";
+            });
+          });
+      });
+
+      /* addBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const lead = {
+            name: name.value,
+            email: email.value,
+            number: number.value,
+            product: product.value,
+            status: status.value,
+            eligible: eligible.value,
+            payout: payout.value,
+          };
+          database.doc(code.value).update({
+            clients: firebase.firestore.FieldValue.arrayUnion(lead),
+          });
+        }); */
+
+      updateBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const lead = {
+          name: name.value,
+          email: email.value,
+          number: number.value,
+          product: product.value,
+          status: status.value,
+          eligible: eligible.value,
+          payout: payout.value,
+        };
+        database.doc(code.value).update({
+          clients: firebase.firestore.FieldValue.arrayUnion(lead),
+        });
+      });
+
+      /* deleteBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          //delete a field
+          //database.doc(name.value).update({
+          //name: firebase.firestore.FieldValue.delete()
+
+          //delete a document
+          //database.doc(name.value).delete();
+          //});
+        }); */
+    </script>
+  </body>
+</html>

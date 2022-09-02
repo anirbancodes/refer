@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Lead</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <style>
+      body {
+        padding-left: 30%;
+        padding-right: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <form data-name="Add Lead" class="footer-newsletter" name="addLead "> -->
+    Ref Code <input class="w-input" name="code" id="code" type="number" />
+    Email
+    <input class="w-input" id="email" name="email" type="email" />
+
+    Name <input class="w-input" id="name" name="name" type="text" /> Number
+    <input class="w-input" id="number" name="number" type="number" />
+
+    Product
+    <select class="w-input" id="product" name="product">
+      <option value="Upstox">Upstox</option>
+      <option value="Kotak">Kotak</option>
+      <option value="Edelweiss">Edelweiss</option>
+      <option value="TradeCircle">TradeCircle</option>
+      <option value="Groww">Groww</option>
+      <option value="Jiffy">Jiffy</option>
+      <option value="Alice Blue">Alice Blue</option>
+      <option value="Paytm Money">Paytm Money</option>
+      <option value="Dhan">Dhan</option>
+      <option value="ICICI Direct">ICICI Direct</option>
+    </select>
+
+    Status
+    <select class="w-input" id="status" name="status">
+      <option value="Acc Not Opened">Acc Not Opened</option>
+	<option value="Acc Opened">Acc Opened</option>
+      <option value="Not Traded">Not Traded</option>
+      <option value="Funds not added">Funds not added</option>
+    </select>
+
+    Eligible
+    <select class="w-input" id="eligible" name="eligible">
+      <option value="No">No</option>
+      <option value="Yes">Yes</option>
+    </select>
+
+    Payout Status
+    <select class="w-input" id="payout" name="payout">
+      <option value="Pending">Pending</option>
+      <option value="Done">Done</option>
+    </select>
+    <!-- <input class="button-android-dark" type="submit" /> -->
+    <!-- </form> -->
+
+    <div>
+      <button class="button-outline-blue w-button" id="addBtn">Add</button>
+      &emsp;&emsp;&emsp;&emsp;
+      <!-- <button class="button-outline-blue w-button" id="updateBtn">
+        Update
+      </button>
+      <br /><br />
+      <button class="button-outline-blue w-button" id="deleteBtn">
+        Delete
+      </button> -->
+    </div>
+    <br /><br />
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+    <script id="main">
+      const firebaseConfig = {
+        apiKey: "AIzaSyA93jfnENX79gIhn7nm9rbTRrR_pQh1S1g",
+        authDomain: "qc-refer.firebaseapp.com",
+        projectId: "qc-refer",
+        storageBucket: "qc-refer.appspot.com",
+        messagingSenderId: "19488055777",
+        appId: "1:19488055777:web:3a7c1c97e8ba42e4b8b2a0",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      const cloudDB = firebase.firestore();
+
+      const code = document.getElementById("code");
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const number = document.getElementById("number");
+      const product = document.getElementById("product");
+      const status = document.getElementById("status");
+      const eligible = document.getElementById("eligible");
+      const payout = document.getElementById("payout");
+
+      const addBtn = document.getElementById("addBtn");
+      const updateBtn = document.getElementById("updateBtn");
+      const deleteBtn = document.getElementById("deleteBtn");
+
+      const database = cloudDB.collection("partners");
+
+      /* addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        database
+          .doc(code.value)
+          .set({
+            name: name.value,
+            birth: birth.value,
+          })
+          .then(() => {
+            console.log("Data suceess");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }); */
+
+      addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const lead = {
+          name: name.value,
+          email: email.value,
+          number: number.value,
+          product: product.value,
+          status: status.value,
+          eligible: eligible.value,
+          payout: payout.value,
+        };
+        database.doc(code.value).update({
+          clients: firebase.firestore.FieldValue.arrayUnion(lead),
+        });
+      });
+
+      /* updateBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        database.doc(code.value).update({
+          clients: firebase.firestore.FieldValue.arrayUnion(lead),
+          status: status.value,
+          eligible: eligible.value,
+          payout: payout.value,
+        });
+      }); */
+
+      /* deleteBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        //delete a field
+        //database.doc(name.value).update({
+        //name: firebase.firestore.FieldValue.delete()
+
+        //delete a document
+        //database.doc(name.value).delete();
+      }); 
+      // }); */
+    </script>
+  </body>
+</html>

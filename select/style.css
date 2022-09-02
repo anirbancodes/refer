@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;400;500&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Duru+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Hubballi&display=swap");
+
+html {
+  font-family: "Work Sans", sans-serif;
+}
+body {
+  background-color: #f4f6fa;
+}
+/* Header start */
+.head2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.head2 > h2 {
+  margin-left: 6vw;
+}
+.link {
+  background-color: orangered;
+  color: white;
+  padding: 9px 13px 9px 13px;
+  border-radius: 25px;
+  /* box-shadow: 4px 4px 3px rgb(250, 134, 92); */
+  box-shadow: 4px 4px rgb(250, 134, 92);
+}
+.link:hover {
+  background-color: rgb(14, 14, 70);
+  color: white;
+}
+@media screen and (min-width: 767px) {
+  .head1 {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header-links {
+    width: 40%;
+    margin-top: 5vh;
+  }
+}
+@media screen and (max-width: 767px) {
+  .header-links {
+    width: 100%;
+  }
+}
+.header-links {
+  display: flex;
+  justify-content: space-evenly;
+}
+a {
+  color: rgb(94, 94, 94);
+  text-decoration: none;
+  font-size: medium;
+}
+
+/* Header end */
+/* Cards start */
+.cards {
+  margin-top: 30px;
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+.card {
+  background-color: white;
+  padding-bottom: 5px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: rgb(146, 146, 146);
+}
+.broker {
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+.broker-name {
+  padding-top: 3.5vh;
+  margin-bottom: 3vh;
+  font-size: 20px;
+  font-weight: 600;
+  color: #002736;
+}
+.category {
+  text-transform: uppercase;
+  color: rgb(177, 177, 177);
+  margin-bottom: 7px;
+  font-size: 17px;
+}
+.line {
+  display: flex;
+  justify-content: space-between;
+}
+.details {
+  display: flex;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.data {
+  color: #002736;
+  /* font-family: "Duru Sans", sans-serif; */
+  /* font-family: 'Fredoka', sans-serif; */
+  font-family: "Hubballi", cursive;
+  font-size: 21px;
+
+  text-transform: initial;
+}
+.extra-data {
+  /* color: rgb(177, 177, 177); */
+  color: #002736;
+  text-transform: initial;
+}
+@media screen and (max-width: 767px) {
+  .pc {
+    display: none;
+  }
+  .line {
+    flex-direction: column;
+    margin-bottom: 7px;
+  }
+  .details {
+    margin-bottom: 2px;
+  }
+  .card {
+    background-color: white;
+    padding-bottom: 10px;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+  }
+  .category {
+    font-size: 16px;
+  }
+  .data {
+    font-size: 18px;
+  }
+}
+/* Cards end */

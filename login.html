@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Refer</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body
+    style="
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <h1>Login</h1>
+    <div>
+      <form
+        data-name="Upstox Lead"
+        class="footer-newsletter"
+        name="login"
+        method="GET"
+        action="dashboard.html"
+      >
+        <p>
+          Your Code
+          <span style="font-size: smaller">(same as your referral code)</span>
+        </p>
+        <input
+          type="number"
+          class="w-input"
+          style="border-width: 2px; border-radius: 6px; border-color: deeppink"
+          id="code"
+          name="code"
+          placeholder="example: 1000"
+          required
+        />
+        <p>Year of Birth</p>
+        <input
+          type="number"
+          class="w-input"
+          id="year"
+          name="year"
+          style="border-width: 2px; border-radius: 6px; border-color: deeppink"
+          placeholder="example: 1980"
+          required
+        />
+
+        <div class="top-margin _20-pixels">
+          <input type="submit" class="button-outline-blue w-button" />
+        </div>
+      </form>
+    </div>
+    <!-- <div class="top-margin _20-pixels">
+      <a
+        id="loginBtn"
+        class="button-outline-blue"
+        style="padding-left: 30px; padding-right: 30px; font-size: large"
+        >Login</a
+      >
+    </div> -->
+
+    <h1 style="margin-top: 12vh">Don't have an account ?</h1>
+    <div class="top-margin _20-pixels">
+      <a
+        href="signup.html"
+        class="button-outline-blue"
+        style="font-size: large; padding-left: 30px; padding-right: 30px"
+        >Signup</a
+      >
+    </div>
+  </body>
+</html>

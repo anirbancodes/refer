@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swing</title>
+    <style>
+      body {
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+
+  <body>
+    Name <input id="name" type="text" /> <br /><br />
+    NSE: <input id="code" type="text" /> <br /><br />
+
+    Buy1* <input id="buyl" type="text" /> <br /><br />
+
+    Buy2 <input id="buyh" type="text" /> <br /><br />
+
+    Target1* <input id="t1" type="text" /> <br /><br />
+
+    Target2 <input id="t2" type="text" /> <br /><br />
+
+    SL <input id="sl" type="text" /> <br /><br />
+
+    Comment <input id="msg" type="text" /> <br /><br />
+
+    <div class="button">
+      <button id="addBtn">Add</button>
+      &emsp;&emsp;&emsp;&emsp;
+      <!-- <button id="updateBtn">Update</button>
+      &emsp;&emsp;&emsp;&emsp; -->
+      <button id="deleteBtn">Delete</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+    <script id="main">
+      const firebaseConfig = {
+        apiKey: "AIzaSyCcMdk4Gm4XrQi2Zqll9mxMU2DYXljFer8",
+        authDomain: "qc-reco.firebaseapp.com",
+        projectId: "qc-reco",
+        storageBucket: "qc-reco.appspot.com",
+        messagingSenderId: "496853949939",
+        appId: "1:496853949939:web:426fb4720bc0347f308686",
+        measurementId: "G-GQE78RBPEK",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      const cloudDB = firebase.firestore();
+
+      const name = document.getElementById("name");
+      const buyl = document.getElementById("buyl");
+      const buyh = document.getElementById("buyh");
+      const t1 = document.getElementById("t1");
+      const t2 = document.getElementById("t2");
+      const sl = document.getElementById("sl");
+      const msg = document.getElementById("msg");
+      const code = document.getElementById("code");
+
+      const addBtn = document.getElementById("addBtn");
+      const deleteBtn = document.getElementById("deleteBtn");
+      // const updateBtn = document.getElementById("updateBtn");
+
+      const database = cloudDB.collection("swing");
+
+      addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        database
+          .doc(name.value)
+          .set({
+            name: name.value,
+            code: code.value.toUpperCase(),
+            buyAtLow: buyl.value,
+            buyAtH: buyh.value,
+            target1: t1.value,
+            target2: t2.value,
+            sl: sl.value,
+            comment: msg.value,
+          })
+          .then(() => {
+            console.log("Data suceess");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+
+      // updateBtn.addEventListener("click", (e) => {
+      //   e.preventDefault();
+      //   database.doc(name.value).get().then((item)=> {
+      //     item.update({
+      //     buyAtLow:450,
+      // buyl.value != item.data().buyAtLow
+      //   ? buyl.value
+      //   : item.data().buyAtLow,
+      // buyAtH: buyh.value,
+      // target1: t1.value,
+      // target2: t2.value,
+      // sl: sl.value,
+      // comment: msg.value,
+      //   })
+      // });
+
+      deleteBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        //delete a document
+        database.doc(name.value).delete();
+      });
+    </script>
+  </body>
+</html>

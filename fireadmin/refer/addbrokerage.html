@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Product</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <style>
+      body {
+        padding-left: 30%;
+        padding-right: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+      hr {
+        width: 40vw;
+      }
+      a {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <form data-name="Add Lead" class="footer-newsletter" name="addLead "> -->
+    Broker <input class="w-input" name="name" id="name" type="text" />
+    <hr />
+    Acc Open
+    <input class="w-input" id="open" name="open" type="number" />
+    <hr />
+    AMC (text)<input class="w-input" id="amc" name="amc" type="text" />and
+    ₹<input class="w-input" id="amc-2yr" name="amc-2yr" type="text" />
+    <a onclick="f_yr2amc()" class="button-android-dark"> from 2nd yr</a>
+    <hr />
+    DP charge<input class="w-input" id="dp" name="dp" type="number" />
+    <hr />
+    Delivery
+    <input class="w-input" id="del" name="del" type="text" />
+    <a onclick="f_del_pct()" class="button-android-dark">%</a
+    ><a onclick="f_del_rs()" class="button-android-dark">₹</a> upto ₹
+    <input class="w-input" id="del-max" name="del-max" type="number" />
+    <a class="button-android-dark" onclick="f_del_max()">Max.</a>
+    <hr />
+    Intraday
+    <input class="w-input" id="intra" name="intra" type="text" />
+    <a onclick="f_intra_pct()" class="button-android-dark">%</a
+    ><a onclick="f_intra_pct()" class="button-android-dark">₹</a>
+    upto
+    <input class="w-input" id="intra-max" name="intra-max" type="number" />
+    <a id="" class="button-android-dark" onclick="f_intra_max()">Max.</a>
+    <hr />
+    Options
+    <input class="w-input" id="option" name="option" type="text" />
+    <a onclick="f_option_order()" class="button-android-dark">/order</a
+    ><a onclick="f_option_lot()" class="button-android-dark">/lot</a>
+    <hr />
+    <!-- fut
+    <input class="w-input" id="fut" name="fut" type="number" /> -->
+
+    <!-- 1st yr amc free
+    <select class="w-input" id="frst0amc" name="frst0amc">
+      <option value="true">true</option>
+      <option value="false">false</option>
+    </select> -->
+
+    extra <input class="w-input" id="extra" name="extra" type="text" />
+    <hr />
+    app/web ( , separated)
+    <input class="w-input" id="apps" name="apps" type="text" />
+    <hr />
+    <!-- <input class="button-android-dark" type="submit" /> -->
+    <!-- </form> -->
+
+    <div>
+      <button class="button-outline-blue w-button" id="addBtn">Add</button>
+      &emsp;&emsp;&emsp;&emsp;
+      <button class="button-outline-blue w-button" id="updateBtn">
+        Update
+      </button>
+      <br /><br />
+      <!-- <button class="button-outline-blue w-button" id="deleteBtn">
+        Delete
+      </button> -->
+    </div>
+    <br /><br />
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+    <script id="main">
+      const firebaseConfig = {
+        apiKey: "AIzaSyA93jfnENX79gIhn7nm9rbTRrR_pQh1S1g",
+        authDomain: "qc-refer.firebaseapp.com",
+        projectId: "qc-refer",
+        storageBucket: "qc-refer.appspot.com",
+        messagingSenderId: "19488055777",
+        appId: "1:19488055777:web:3a7c1c97e8ba42e4b8b2a0",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      const cloudDB = firebase.firestore();
+
+      const database = cloudDB.collection("products");
+
+      let v_yr2amc,
+        v_del_pct,
+        v_del_rs,
+        v_del_max,
+        v_intra_pct,
+        v_intra_rs,
+        v_intra_max,
+        v_option_order,
+        v_option_lot;
+      function f_yr2amc() {
+        v_yr2amc = true;
+      }
+      function f_del_pct() {
+        v_del_pct = true;
+      }
+      function f_del_rs() {
+        v_del_r = true;
+      }
+      function f_del_max() {
+        v_del_max = true;
+      }
+      function f_intra_pct() {
+        v_intra_pct = true;
+      }
+      function f_intra_rs() {
+        v_intra_rs = true;
+      }
+      function f_intra_max() {
+        v_intra_max = true;
+      }
+      function f_option_order() {
+        v_option_order = true;
+      }
+      function f_option_lot() {
+        v_option_lot = true;
+      }
+
+      addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        let open = document.getElementById("open").value;
+        let amc = document.getElementById("amc").value;
+        let dp = document.getElementById("dp").value;
+        let del = document.getElementById("del").value;
+        let intra = document.getElementById("intra").value;
+        // let fut = document.getElementById("fut").value;
+        let option = document.getElementById("option").value;
+        let extra = document.getElementById("extra").value;
+        let apps = document.getElementById("apps").value;
+
+        const addBtn = document.getElementById("addBtn");
+        // const updateBtn = document.getElementById("updateBtn");
+        // const deleteBtn = document.getElementById("deleteBtn");
+
+        if (v_yr2amc == true) {
+          const amc_2yr = document.getElementById("amc-2yr").value;
+          amc += " (₹" + amc_2yr + " from 2nd year)";
+        }
+        if (v_del_pct == true) {
+          del += "%";
+        }
+        if (v_del_rs == true) {
+          del += "₹";
+        }
+        if (v_del_max == true) {
+          const del_max = document.getElementById("del-max").value;
+          del += " (max. ₹" + del_max + ")";
+        }
+        if (v_intra_pct == true) {
+          intra += "%";
+        }
+        if (v_intra_rs == true) {
+          intra += "₹";
+        }
+        if (v_intra_max == true) {
+          const intra_max = document.getElementById("intra-max").value;
+          intra += " (max. ₹" + intra_max + ")";
+        }
+        if (v_option_order == true) {
+          option += "/order";
+        }
+        if (v_option_lot == true) {
+          option += "/lot";
+        }
+
+        let broker = name;
+        const data = {
+          [broker]: {
+            open: open,
+            amc: amc,
+            dp: dp,
+            del: del,
+            intra: intra,
+            option: option,
+            extra: extra,
+            apps: apps,
+          },
+        };
+        console.log(data);
+
+        database
+          .doc("brokerage")
+          .set(
+            {
+              demat: data,
+            },
+            { merge: true }
+          )
+          .then(() => {
+            console.log("Data suceess");
+          })
+          .catch((error) => {
+            console.log("set", error);
+          });
+
+        database
+          .doc("brokerage")
+          .update({
+            brokers: firebase.firestore.FieldValue.arrayUnion(name),
+          })
+          .then(() => {
+            console.log("Data suceess");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+
+      /* updateBtn.addEventListener("click", (e) => {
+         e.preventDefault();
+         database.doc(code.value).update({
+           clients: firebase.firestore.FieldValue.arrayUnion(lead),
+           status: status.value,
+           eligible: eligible.value,
+           payout: payout.value,
+         });
+       }); */
+
+      /* deleteBtn.addEventListener("click", (e) => {
+         e.preventDefault();
+         //delete a field
+         //database.doc(name.value).update({
+         //name: firebase.firestore.FieldValue.delete()
+
+         //delete a document
+         //database.doc(name.value).delete();
+       });
+       // }); */
+    </script>
+  </body>
+</html>

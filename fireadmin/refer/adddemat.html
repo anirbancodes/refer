@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Product</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <style>
+      body {
+        padding-left: 30%;
+        padding-right: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <form data-name="Add Lead" class="footer-newsletter" name="addLead "> -->
+    Name <input class="w-input" name="name" id="name" type="text" />
+    amt
+    <input class="w-input" id="amt" name="amt" type="number" />
+
+    amc <input class="w-input" id="amc" name="amc" type="number" />
+    open
+    <input class="w-input" id="open" name="open" type="number" />
+
+    1st trade
+    <input class="w-input" id="trade" name="trade" type="number" />
+
+    <!-- <input class="button-android-dark" type="submit" /> -->
+    <!-- </form> -->
+
+    <div>
+      <button class="button-outline-blue w-button" id="addBtn">Add</button>
+      &emsp;&emsp;&emsp;&emsp;
+      <button class="button-outline-blue w-button" id="updateBtn">
+        Update
+      </button>
+      <br /><br />
+      <button class="button-outline-blue w-button" id="deleteBtn">
+        Delete
+      </button>
+    </div>
+    <br /><br />
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+    <script id="main">
+      const firebaseConfig = {
+        apiKey: "AIzaSyA93jfnENX79gIhn7nm9rbTRrR_pQh1S1g",
+        authDomain: "qc-refer.firebaseapp.com",
+        projectId: "qc-refer",
+        storageBucket: "qc-refer.appspot.com",
+        messagingSenderId: "19488055777",
+        appId: "1:19488055777:web:3a7c1c97e8ba42e4b8b2a0",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      const cloudDB = firebase.firestore();
+
+      const name = document.getElementById("name");
+      const amt = document.getElementById("amt");
+      const trade = document.getElementById("trade");
+      const amc = document.getElementById("amc");
+      const open = document.getElementById("open");
+
+      const addBtn = document.getElementById("addBtn");
+      const updateBtn = document.getElementById("updateBtn");
+      const deleteBtn = document.getElementById("deleteBtn");
+
+      const database = cloudDB.collection("products");
+
+      /* addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        database
+          .doc(code.value)
+          .set({
+            name: name.value,
+            birth: birth.value,
+          })
+          .then(() => {
+            console.log("Data suceess");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }); */
+
+      addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        let broker = name.value;
+        const data = {
+          [broker]: {
+            amc: amc.value,
+            amt: amt.value,
+            open: open.value,
+            trade: trade.value,
+          },
+        };
+
+        database
+          .doc("refer")
+          .set(
+            {
+              demat: data,
+            },
+            { merge: true }
+          )
+          .then(() => {
+            console.log("Data suceess");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+        database
+          .doc("refer")
+          .update({
+            brokers: firebase.firestore.FieldValue.arrayUnion(name.value),
+          })
+          .then(() => {
+            console.log("Data suceess");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+
+      /* updateBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        database.doc(code.value).update({
+          clients: firebase.firestore.FieldValue.arrayUnion(lead),
+          status: status.value,
+          eligible: eligible.value,
+          payout: payout.value,
+        });
+      }); */
+
+      /* deleteBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        //delete a field
+        //database.doc(name.value).update({
+        //name: firebase.firestore.FieldValue.delete()
+
+        //delete a document
+        //database.doc(name.value).delete();
+      }); 
+      // }); */
+    </script>
+  </body>
+</html>
